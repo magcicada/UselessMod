@@ -3,6 +3,7 @@ package com.sorrowmist.useless.utils;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.sorrowmist.useless.config.ConfigManager;
+import mekanism.api.math.MathUtils;
 import mekanism.api.Upgrade;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.tile.interfaces.IUpgradeTile;
@@ -11,6 +12,10 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import java.io.File;
 
 public class MekUtils {
+
+    public static long ceilToLong(double d) {
+        return MathUtils.clampToLong(Math.ceil(d));
+    }
 
     public static int MAX_UPGRADE = 32;
     public static double time(IUpgradeTile tile) {

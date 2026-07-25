@@ -1,14 +1,11 @@
 package com.sorrowmist.useless.utils;
 
-import mekanism.api.math.MathUtils;
-
 /**
  * Math utilities complementing Mekanism's MathUtils for 1.20.1 compatibility.
  */
 public class MathUtils {
 
     private MathUtils() {
-        // 私有构造函数，防止被实例化
     }
 
     /**
@@ -19,6 +16,6 @@ public class MathUtils {
      * @return 向上取整且不超过 Long.MAX_VALUE 的 long 值
      */
     public static long ceilToLong(double d) {
-        return MathUtils.clampToLong(Math.ceil(d));
+        return mekanism.api.math.MathUtils.clampToLong(Math.ceil(d));
     }
 }

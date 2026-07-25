@@ -19,6 +19,6 @@ public class MathUtils {
      * @return 向上取整且不超过 Long.MAX_VALUE 的 long 值
      */
     public static long ceilToLong(double d) {
-        return clampToLong(Math.ceil(d));
+        return MathUtils.clampToLong(Math.ceil(d));
     }
 }

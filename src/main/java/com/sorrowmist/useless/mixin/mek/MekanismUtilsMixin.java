@@ -30,7 +30,7 @@ public class MekanismUtilsMixin {
                 FloatingLong.create(
                     MekUtils.ceilToLong(cir.getReturnValue().doubleValue() * MekUtils.electricity(tile))
                 )
-            )
+            );
         }
     }
 
@@ -41,7 +41,7 @@ public class MekanismUtilsMixin {
                 FloatingLong.create(
                     MekUtils.ceilToLong(cir.getReturnValue().doubleValue() * MekUtils.capacity(tile))
                 )
-            )
+            );
         }
     }
 }

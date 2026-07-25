@@ -16,26 +16,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = MekanismUtils.class, remap = false)
 public class MekanismUtilsMixin {
 
-    @Inject(method = "getTicks", at = @At("HEAD"), cancellable = true)
-    private static void onGetTicks(IUpgradeTile tile, int def, CallbackInfoReturnable<Integer> cir) {
+    @Inject(method = "getTicks", at = @At("RETURN"), cancellable = true)
+    private static void modifyTicks(IUpgradeTile tile, int def, CallbackInfoReturnable<Double> cir) {
         if (tile.supportsUpgrades()) {
-            double d = (double) def * MekUtils.time(tile);
-            int result = d >= 1.0 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1.0 / d) * -1;
-            cir.setReturnValue(result);
-        } else {
-            cir.setReturnValue(def);
+            cir.setReturnValue(cir.getReturnValue() * MekUtils.time(tile));
         }
     }
 
-    @Inject(method = "getEnergyPerTick", at = @At("HEAD"), cancellable = true)
-    private static void onGetEnergyPerTick(IUpgradeTile tile, FloatingLong def, CallbackInfoReturnable<FloatingLong> cir) {
-        FloatingLong result = tile.supportsUpgrades() ? def.multiply(MekUtils.electricity(tile)) : def;
-        cir.setReturnValue(result);
+    @Inject(method = "getEnergyPerTick", at = @At("RETURN"), cancellable = true)
+    private static void modifyEnergyPerTick(IUpgradeTile tile, long def, CallbackInfoReturnable<Long> cir) {
+        if (tile.supportsUpgrades()) {
+            cir.setReturnValue(MathUtils.ceilToLong(cir.getReturnValue() * MekUtils.electricity(tile)));
+        }
     }
 
-    @Inject(method = "getMaxEnergy", at = @At("HEAD"), cancellable = true)
-    private static void onGetMaxEnergy(IUpgradeTile tile, FloatingLong def, CallbackInfoReturnable<FloatingLong> cir) {
-        FloatingLong result = tile.supportsUpgrades() ? def.multiply(MekUtils.capacity(tile)) : def;
-        cir.setReturnValue(result);
+    @Inject(method = "getMaxEnergy", at = @At("RETURN"), cancellable = true)
+    private static void modifyMaxEnergy(IUpgradeTile tile, long def, CallbackInfoReturnable<Long> cir) {
+        if (tile.supportsUpgrades()) {
+            cir.setReturnValue(MathUtils.ceilToLong(cir.getReturnValue() * MekUtils.capacity(tile)));
+        }
     }
 }

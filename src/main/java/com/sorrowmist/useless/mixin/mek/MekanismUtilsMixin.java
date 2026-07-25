@@ -26,14 +26,14 @@ public class MekanismUtilsMixin {
     @Inject(method = "getEnergyPerTick", at = @At("RETURN"), cancellable = true)
     private static void modifyEnergyPerTick(IUpgradeTile tile, FloatingLong def, CallbackInfoReturnable<FloatingLong> cir) {
         if (tile.supportsUpgrades()) {
-            cir.setReturnValue(MekUtils.ceilToLong(cir.getReturnValue() * MekUtils.electricity(tile)));
+            cir.setReturnValue(MekUtils.ceilToLong(cir.getReturnValue().multiply(MekUtils.electricity(tile))));
         }
     }
 
     @Inject(method = "getMaxEnergy", at = @At("RETURN"), cancellable = true)
     private static void modifyMaxEnergy(IUpgradeTile tile, FloatingLong def, CallbackInfoReturnable<FloatingLong> cir) {
         if (tile.supportsUpgrades()) {
-            cir.setReturnValue(MekUtils.ceilToLong(cir.getReturnValue() * MekUtils.capacity(tile)));
+            cir.setReturnValue(MekUtils.ceilToLong(cir.getReturnValue().multiply(MekUtils.capacity(tile))));
         }
     }
 }

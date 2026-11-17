@@ -8,11 +8,8 @@
     "ElectricPumpMixin",
     "FluidicPlenisherMixin",
     "FormulaicAssemblicatorMixin",
-    "MekanismUtilsMixin",
     "TileComponentEjectorMixin",
-    "TileEntityDigitalMinerMixin",
-    "UpgradeMixin",
-    "UpgradeUtilsMixin"
+    "TileEntityDigitalMinerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

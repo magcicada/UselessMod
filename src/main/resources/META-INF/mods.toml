@@ -481,7 +481,7 @@ side="BOTH"
 [[dependencies.useless_mod]]
 modId="l2library"
 mandatory=false
-versionRange="[2.4.25,2.5)"
+versionRange="[2.4.25,2.6)"
 ordering="AFTER"
 side="BOTH"
 
